@@ -23,21 +23,42 @@ namespace LoggingKata
     
             // Grab an IEnumerable of locations using the Select command: var locations = lines.Select(parser.Parse);
             var locations = lines.Select(parser.Parse).ToArray();
-    
+
             // DON'T FORGET TO LOG YOUR STEPS
-            // Grab the path from the name of your file
-   
+
             // Now, here's the new code
-   
+
             // Create two `ITrackable` variables with initial values of `null`. These will be used to store your two taco bells that are the furthest from each other.
-            // gCreate a `double` variable to store the distance
+            ITrackable taco1 = null;
+            ITrackable taco2 = null;
+            // Create a `double` variable to store the distance
+            double distance = 0;
    
-            // Include the Geolocation toolbox, so you can compare locations: `using GeoCoordinatePortable;`
+            // DONE-Include the Geolocation toolbox, so you can compare locations: `using GeoCoordinatePortable;`
+
             // Do a loop for your locations to grab each location as the origin (perhaps: `locA`)
+            for(int i = 0; i < locations.Length; i++)
+            {
+                var locA = locations[i];
+                var corA = new GeoCoordinate();
+                corA.Latitude = locA.Location.Latitude;
+                corA.Longitude = locA.Location.Longitude;
+
+                for(int j = 0; j < locations.Length; j++)
+                {
+                    var locB = locations[j];
+                    var corB = new GeoCoordinate();
+                    corB.Latitude = locB.Location.Latitude;
+                    corB.Longitude = locB.Location.Longitude;
+                }
+            }
+            
+            
+
             // Create a new corA Coordinate with your locA's lat and long
    
-            // Now, do another loop on the locations with the scope of your first loop, so you can grab the "destination" location (perhaps: `locB`)
-            // Create a new Coordinate with your locB's lat and long
+            // DONE-Now, do another loop on the locations with the scope of your first loop, so you can grab the "destination" location (perhaps: `locB`)
+            // DONE-Create a new Coordinate with your locB's lat and long
     
             // Now, compare the two using `.GetDistanceTo()`, which returns a double
             // If the distance is greater than the currently saved distance, update the distance and the two `ITrackable` variables you set above
